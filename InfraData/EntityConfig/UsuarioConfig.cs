@@ -10,10 +10,10 @@ namespace InfraData.EntityConfig
         {
             builder.ToTable("usuarios");
 
-            builder.Property(x => x.Login).HasMaxLength(20).IsRequired().HasColumnType("varchar");
+            builder.Property(x => x.Login).HasMaxLength(20).IsRequired().HasColumnName("nome").HasColumnType("varchar");
             
-            builder.Property(x => x.Nome).HasMaxLength(20).IsRequired().HasColumnType("varchar");
-            builder.Property(x => x.Senha).HasMaxLength(20).IsRequired().HasColumnType("varchar");
+            builder.Property(x => x.Nome).HasMaxLength(20).HasColumnName("nome").IsRequired().HasColumnType("varchar");
+            builder.Property(x => x.Senha).HasMaxLength(20).IsRequired().HasColumnName("senha").HasColumnType("varchar");
 
             builder.Ignore(x => x.CascadeMode);
         }

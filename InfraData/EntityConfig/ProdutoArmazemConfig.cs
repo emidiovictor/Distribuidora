@@ -12,9 +12,12 @@ namespace InfraData.EntityConfig
 
             builder.HasKey(x => x.Id);
             
-            
             builder.Property(x => x.Quantidade).IsRequired().HasColumnType("integer").HasColumnName("quantidade");
 
+            builder.Property(x => x.IdArmazem).HasColumnName("id_armazem");
+
+            builder.Property(x => x.IdProduto).HasColumnName("id_produto");
+            
             builder.Ignore(x => x.CascadeMode);
 
             builder.HasOne(x => x.Armazem)

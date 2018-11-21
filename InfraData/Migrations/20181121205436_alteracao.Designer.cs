@@ -3,15 +3,17 @@ using System;
 using InfraData.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace InfraData.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20181121205436_alteracao")]
+    partial class alteracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +72,7 @@ namespace InfraData.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataOperacao")
-                        .HasColumnName("data_operacao");
+                        .HasColumnName("datetime");
 
                     b.Property<int>("IdParticipante")
                         .HasColumnName("id_particiapnte");
@@ -152,11 +154,9 @@ namespace InfraData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdArmazem")
-                        .HasColumnName("id_armazem");
+                    b.Property<int>("IdArmazem");
 
-                    b.Property<int>("IdProduto")
-                        .HasColumnName("id_produto");
+                    b.Property<int>("IdProduto");
 
                     b.Property<int>("Quantidade")
                         .HasColumnName("quantidade")
@@ -198,19 +198,16 @@ namespace InfraData.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnName("nome")
                         .HasColumnType("varchar")
                         .HasMaxLength(20);
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnName("nome")
                         .HasColumnType("varchar")
                         .HasMaxLength(20);
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnName("senha")
                         .HasColumnType("varchar")
                         .HasMaxLength(20);
 

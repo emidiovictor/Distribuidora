@@ -17,6 +17,9 @@ namespace InfraData.EntityConfig
 
             builder.Property(x => x.TipoNota).HasColumnName("tipo_nota").IsRequired().HasColumnType("integer");
 
+
+            builder.Property(x => x.DataOperacao).HasColumnName("data_operacao");
+            
             builder.HasOne(x => x.Participante)
                 .WithMany(x => x.Nota)
                 .HasForeignKey(x => x.IdParticipante);
