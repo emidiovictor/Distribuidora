@@ -8,14 +8,13 @@ using Microsoft.Extensions.Configuration;
 namespace InfraData.DataContext
 {
     public class DataBaseContext : DbContext
-    {
-
-        public DbSet<Armazem> Armazem { get; set; }
-        
-        public DataBaseContext(DbContextOptions<DataBaseContext> op) : base(op)
+    {        
+        public DataBaseContext(DbContextOptions op) : base(op)
         {
             
         }
+
+        public DbSet<Armazem> Armazem { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

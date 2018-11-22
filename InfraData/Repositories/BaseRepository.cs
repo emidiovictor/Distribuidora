@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Domain.Entities;
-using Domain.Repositories;
+using Domain.Interfaces.Repositories;
 using InfraData.DataContext;
 using Microsoft.EntityFrameworkCore;
 
 namespace InfraData.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity<T>
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity<T>
     {
-        
         protected readonly DataBaseContext _dbContext;
-
-        public DbSet<T> DbSet { get; set; }
-        public BaseRepository(DataBaseContext dbContext)
+        
+        protected BaseRepository(DataBaseContext dbContext)
         {
             _dbContext = dbContext;
         }

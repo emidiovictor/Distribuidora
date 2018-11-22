@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.AppService;
+using Application.Interfaces;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
 using InfraData.DataContext;
+using InfraData.Repositories;
+using InfraData.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,13 +39,17 @@ namespace Api
                     opt.SerializerSettings.ReferenceLoopHandling =
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
-
+            const string connectionString =
+                "User ID=postgres;Password=masterkey;Host=localhost;Port=5432;Database=distri;Pooling=true;";
             services.AddCors();
-            
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-            });
+            services.AddDbContext<DataBaseContext>(options =>
+                options.UseNpgsql(connectionString));
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
+
+            services.AddScoped<IArmazemAppService, ArmazemAppService>();
+            services.AddScoped<IArmazemRepository, ArmazemRepository>();
+            services.AddScoped<IArmazemService, ArmazemService>();
+            services.AddScoped<DataBaseContext>();
         }
 
 
@@ -56,20 +66,16 @@ namespace Api
 
             app.UseCors(x => x.WithOrigins("http://localhost:4200")
                 .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
-            
-            
+
             app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
-            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-            app.UseAuthentication();
+
             app.UseMvc();
             app.UseHttpsRedirection();
-            app.UseMvc();
         }
     }
 }

@@ -10,15 +10,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InfraData.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20181121205436_alteracao")]
-    partial class alteracao
+    [Migration("20181122003323_ignoreCasadadeModeArmazem")]
+    partial class ignoreCasadadeModeArmazem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Domain.Entities.Armazem", b =>
@@ -39,7 +39,7 @@ namespace InfraData.Migrations
 
                     b.HasIndex("IdRegiao");
 
-                    b.ToTable("armazem");
+                    b.ToTable("Armazem");
                 });
 
             modelBuilder.Entity("Domain.Entities.Item", b =>
@@ -72,7 +72,7 @@ namespace InfraData.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataOperacao")
-                        .HasColumnName("datetime");
+                        .HasColumnName("data_operacao");
 
                     b.Property<int>("IdParticipante")
                         .HasColumnName("id_particiapnte");
@@ -154,9 +154,11 @@ namespace InfraData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdArmazem");
+                    b.Property<int>("IdArmazem")
+                        .HasColumnName("id_armazem");
 
-                    b.Property<int>("IdProduto");
+                    b.Property<int>("IdProduto")
+                        .HasColumnName("id_produto");
 
                     b.Property<int>("Quantidade")
                         .HasColumnName("quantidade")
@@ -198,16 +200,19 @@ namespace InfraData.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
+                        .HasColumnName("nome")
                         .HasColumnType("varchar")
                         .HasMaxLength(20);
 
                     b.Property<string>("Nome")
                         .IsRequired()
+                        .HasColumnName("nome")
                         .HasColumnType("varchar")
                         .HasMaxLength(20);
 
                     b.Property<string>("Senha")
                         .IsRequired()
+                        .HasColumnName("senha")
                         .HasColumnType("varchar")
                         .HasMaxLength(20);
 

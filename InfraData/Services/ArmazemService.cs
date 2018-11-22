@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Entities;
+using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using Domain.Repositories;
 using FluentValidation.Results;
 
 namespace InfraData.Services
@@ -10,6 +10,11 @@ namespace InfraData.Services
     public class ArmazemService : IArmazemService
     {
         private readonly IArmazemRepository _armazemRepository;
+
+        public ArmazemService(IArmazemRepository armazemRepository)
+        {
+            _armazemRepository = armazemRepository;
+        }
 
         public List<Armazem> BuscarTodos()
         {

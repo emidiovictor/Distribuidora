@@ -10,15 +10,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InfraData.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20181121205943_alteracostblusuario")]
-    partial class alteracostblusuario
+    [Migration("20181122003537_atualizacaoTabelaArmazem")]
+    partial class atualizacaoTabelaArmazem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Domain.Entities.Armazem", b =>
@@ -154,9 +154,11 @@ namespace InfraData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdArmazem");
+                    b.Property<int>("IdArmazem")
+                        .HasColumnName("id_armazem");
 
-                    b.Property<int>("IdProduto");
+                    b.Property<int>("IdProduto")
+                        .HasColumnName("id_produto");
 
                     b.Property<int>("Quantidade")
                         .HasColumnName("quantidade")

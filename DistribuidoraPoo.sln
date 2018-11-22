@@ -1,14 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{7F7F7F1C-6434-4C94-812F-A4CEF30C7D89}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{7F7F7F1C-6434-4C94-812F-A4CEF30C7D89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{EE3A940B-BA18-478D-B27B-8CBA2EF8B2A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{EE3A940B-BA18-478D-B27B-8CBA2EF8B2A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfraData", "InfraData\InfraData.csproj", "{C1FC9652-1536-4D8C-BD70-43E202651B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraData", "InfraData\InfraData.csproj", "{C1FC9652-1536-4D8C-BD70-43E202651B44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{B2B97DFD-D0BC-4AC6-995C-CE0FF32A7981}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{B2B97DFD-D0BC-4AC6-995C-CE0FF32A7981}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UoW", "UoW\UoW.csproj", "{AEEEED17-6307-4326-9362-DA6B344C606A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UoW", "UoW\UoW.csproj", "{AEEEED17-6307-4326-9362-DA6B344C606A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +39,11 @@ Global
 		{AEEEED17-6307-4326-9362-DA6B344C606A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEEEED17-6307-4326-9362-DA6B344C606A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEEEED17-6307-4326-9362-DA6B344C606A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9DE2D100-E050-46A5-A868-BE6EAF780252}
 	EndGlobalSection
 EndGlobal

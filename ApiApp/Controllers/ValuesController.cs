@@ -2,29 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Interfaces;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers
+namespace ApiApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArmazemController : ControllerBase
+    public class ValuesController : ControllerBase
     {
-        private readonly IArmazemAppService _armazemAppService;
-
-        public ArmazemController(IArmazemAppService armazemAppService)
-        {
-            _armazemAppService = armazemAppService;
-        }
-
+        // GET api/values
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult<IEnumerable<string>> Get()
         {
-            var dados = _armazemAppService.BuscarTodosArmazens();
-
-            return Ok(dados);
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5

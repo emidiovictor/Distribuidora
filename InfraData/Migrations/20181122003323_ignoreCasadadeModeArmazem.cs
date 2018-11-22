@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace InfraData.Migrations
 {
-    public partial class t : Migration
+    public partial class ignoreCasadadeModeArmazem : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,9 +45,8 @@ namespace InfraData.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Nome = table.Column<string>(type: "varchar", maxLength: 20, nullable: false),
-                    Login = table.Column<string>(type: "varchar", maxLength: 20, nullable: false),
-                    Senha = table.Column<string>(type: "varchar", maxLength: 20, nullable: false)
+                    nome = table.Column<string>(type: "varchar", maxLength: 20, nullable: false),
+                    senha = table.Column<string>(type: "varchar", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +54,7 @@ namespace InfraData.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "armazem",
+                name: "Armazem",
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
@@ -65,9 +64,9 @@ namespace InfraData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_armazem", x => x.id);
+                    table.PrimaryKey("PK_Armazem", x => x.id);
                     table.ForeignKey(
-                        name: "FK_armazem_regioes_id_regiao",
+                        name: "FK_Armazem_regioes_id_regiao",
                         column: x => x.id_regiao,
                         principalTable: "regioes",
                         principalColumn: "id",
@@ -101,22 +100,22 @@ namespace InfraData.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    IdProduto = table.Column<int>(nullable: false),
-                    IdArmazem = table.Column<int>(nullable: false),
+                    id_produto = table.Column<int>(nullable: false),
+                    id_armazem = table.Column<int>(nullable: false),
                     quantidade = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_produto_armazem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_produto_armazem_armazem_IdArmazem",
-                        column: x => x.IdArmazem,
-                        principalTable: "armazem",
+                        name: "FK_produto_armazem_Armazem_id_armazem",
+                        column: x => x.id_armazem,
+                        principalTable: "Armazem",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_produto_armazem_produtos_IdProduto",
-                        column: x => x.IdProduto,
+                        name: "FK_produto_armazem_produtos_id_produto",
+                        column: x => x.id_produto,
                         principalTable: "produtos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -130,7 +129,7 @@ namespace InfraData.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     id_usuario = table.Column<int>(nullable: false),
                     id_particiapnte = table.Column<int>(nullable: false),
-                    DataOperacao = table.Column<DateTime>(nullable: false),
+                    data_operacao = table.Column<DateTime>(nullable: false),
                     tipo_nota = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -178,8 +177,8 @@ namespace InfraData.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_armazem_id_regiao",
-                table: "armazem",
+                name: "IX_Armazem_id_regiao",
+                table: "Armazem",
                 column: "id_regiao");
 
             migrationBuilder.CreateIndex(
@@ -208,14 +207,14 @@ namespace InfraData.Migrations
                 column: "id_regiao");
 
             migrationBuilder.CreateIndex(
-                name: "IX_produto_armazem_IdArmazem",
+                name: "IX_produto_armazem_id_armazem",
                 table: "produto_armazem",
-                column: "IdArmazem");
+                column: "id_armazem");
 
             migrationBuilder.CreateIndex(
-                name: "IX_produto_armazem_IdProduto",
+                name: "IX_produto_armazem_id_produto",
                 table: "produto_armazem",
-                column: "IdProduto");
+                column: "id_produto");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -230,7 +229,7 @@ namespace InfraData.Migrations
                 name: "notas");
 
             migrationBuilder.DropTable(
-                name: "armazem");
+                name: "Armazem");
 
             migrationBuilder.DropTable(
                 name: "produtos");
