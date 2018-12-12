@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class ArmazemController : ControllerBase
+    public class ArmazemController : Controller
     {
         private readonly IArmazemAppService _armazemAppService;
 
@@ -19,11 +18,21 @@ namespace Api.Controllers
             _armazemAppService = armazemAppService;
         }
 
-        [HttpGet]
-        public ActionResult GetAll()
+        [HttpGet("tetete")]
+        [ProducesResponseType(typeof(List<Armazem>), 200)]
+        public IActionResult GetAll()
         {
-            var dados = _armazemAppService.BuscarTodosArmazens();
+            var dados = _armazemAppService.BuscarTodosArmazens().ToList();
+            var teste = new List<Teste>();
 
+            dados.ForEach(x =>
+           {
+               teste.Add(new Teste()
+               {
+                   Nome = x.Nome,
+                   Id = x.Id
+               });
+           });
             return Ok(dados);
         }
 
@@ -51,5 +60,11 @@ namespace Api.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class Teste
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
     }
 }

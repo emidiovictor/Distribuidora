@@ -4,7 +4,7 @@ using FluentValidation.Results;
 
 namespace Domain.Entities
 {
-    public abstract class BaseEntity<T> : AbstractValidator<T>
+    public abstract class BaseEntity<T> : AbstractValidator<T> where T : class
     {
         protected BaseEntity()
         {
@@ -13,8 +13,12 @@ namespace Domain.Entities
 
         public int Id { get; set; }
 
-        [NotMapped] public ValidationResult ValidationResult { get; set; }
+        [NotMapped]
+        public ValidationResult ValidationResult { get; set; }
 
-        protected abstract bool EhValido();
+        protected virtual bool EhValido()
+        {
+            return ValidationResult.IsValid;
+        }
     }
 }

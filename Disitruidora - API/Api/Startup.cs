@@ -33,18 +33,31 @@ namespace Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(opt =>
                 {
                     opt.SerializerSettings.ReferenceLoopHandling =
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
-            const string connectionString =
-                "User ID=postgres;Password=masterkey;Host=localhost;Port=5432;Database=distri;Pooling=true;";
-            services.AddCors();
+            const string connectionString ="User ID=postgres;Password=masterkey;Host=localhost;Port=5432;Database=distri;Pooling=true;";
+
+
             services.AddDbContext<DataBaseContext>(options =>
                 options.UseNpgsql(connectionString));
+
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    p => p.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials());
+            });
+
 
             services.AddScoped<IArmazemAppService, ArmazemAppService>();
             services.AddScoped<IArmazemRepository, ArmazemRepository>();
@@ -64,8 +77,7 @@ namespace Api
                 app.UseHsts();
             }
 
-            app.UseCors(x => x.WithOrigins("http://localhost:4200")
-                .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseCors("AllowAll");
 
             app.UseSwagger();
 
@@ -75,7 +87,7 @@ namespace Api
             });
 
             app.UseMvc();
-            app.UseHttpsRedirection();
+
         }
     }
 }
