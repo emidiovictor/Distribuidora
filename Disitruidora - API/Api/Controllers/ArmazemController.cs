@@ -26,7 +26,6 @@ namespace Api.Controllers
             return Ok(armazensConsultaDtos);
         }
 
-        // GET api/values/5
         [HttpPost]
         public IActionResult Salvar(ArmazemCadastroDto dto)
         {
