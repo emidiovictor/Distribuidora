@@ -27,32 +27,14 @@ namespace Api.Controllers
         }
 
         // GET api/values/5
-        [HttpPost()]
+        [HttpPost]
         public IActionResult Salvar(ArmazemCadastroDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-
-            }
+            var result = _armazemAppService.SalvarArmazem(dto);
+            return Ok(result);
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+       
     }
 
    

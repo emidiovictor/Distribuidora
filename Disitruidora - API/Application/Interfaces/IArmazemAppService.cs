@@ -10,7 +10,7 @@ namespace Application.Interfaces
         IEnumerable<Armazem> BuscarTodosArmazens();
         IEnumerable<ArmazemConsultaDto> BuscarTodosArmazensComRegiao();
 
-        void SalvarArmazem(ArmazemCadastroDto armazem);
+        Armazem SalvarArmazem(ArmazemCadastroDto armazem);
 
         void DeletarArmazem(int id);
 

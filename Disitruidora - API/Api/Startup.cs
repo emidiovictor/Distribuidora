@@ -86,8 +86,12 @@ namespace Api
             app.UseCors("AllowAll");
 
             app.UseSwagger();
-            Mapper.Initialize(cfg => cfg.AddProfile<DtoToDomainProfile>());
-            Mapper.Initialize(cfg => cfg.AddProfile<DomainToDtoProfile>());
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<DtoToDomainProfile>();
+                cfg.AddProfile<DomainToDtoProfile>();
+            } );
+          
 
 
 

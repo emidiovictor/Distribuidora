@@ -30,11 +30,12 @@ namespace Application.AppService
             return armazemDtoList;
         }
 
-        public void SalvarArmazem(ArmazemCadastroDto armazem)
+        public Armazem SalvarArmazem(ArmazemCadastroDto armazem)
         {
             var arm = Mapper.Map<Armazem>(armazem);
             _armazemService.CadastrarArmazem(arm);
             Commit();
+            return arm;
         }
 
         public void DeletarArmazem(int id)
