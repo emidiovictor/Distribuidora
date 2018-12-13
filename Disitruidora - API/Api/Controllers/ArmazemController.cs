@@ -18,22 +18,12 @@ namespace Api.Controllers
             _armazemAppService = armazemAppService;
         }
 
-        [HttpGet("tetete")]
-        [ProducesResponseType(typeof(List<Armazem>), 200)]
+        [HttpGet]
         public IActionResult GetAll()
         {
-            var dados = _armazemAppService.BuscarTodosArmazens().ToList();
-            var teste = new List<Teste>();
 
-            dados.ForEach(x =>
-           {
-               teste.Add(new Teste()
-               {
-                   Nome = x.Nome,
-                   Id = x.Id
-               });
-           });
-            return Ok(dados);
+           var a = _armazemAppService.BuscarTodosArmazensComRegiao();
+            return Ok(a);
         }
 
         // GET api/values/5
@@ -62,9 +52,5 @@ namespace Api.Controllers
         }
     }
 
-    public class Teste
-    {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-    }
+   
 }

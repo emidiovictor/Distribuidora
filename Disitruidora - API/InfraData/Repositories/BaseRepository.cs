@@ -12,15 +12,17 @@ namespace InfraData.Repositories
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity<T>
     {
         protected readonly DataBaseContext _dbContext;
-        
+        protected readonly DbSet<T> entry;
+
         protected BaseRepository(DataBaseContext dbContext)
         {
             _dbContext = dbContext;
+            entry = dbContext.Set<T>();
         }
 
         public virtual T GetById(int id)
         {
-            return  _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
+            return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
         }
 
         public T Add(T entity)

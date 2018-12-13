@@ -11,10 +11,10 @@ namespace Domain.Entities
         public int IdParticipante { get; set; }
         public DateTime DataOperacao { get; set; }
         public int TipoNota { get; set; }
-        public Usuario Usuario { get; set; }
-        public Participante Participante { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public virtual Participante Participante { get; set; }
 
-        public List<Item> ListaItem { get; set; }
+        public virtual List<Item> ListaItem { get; set; }
 
         public double CalculaValorTotalCompra()
         {

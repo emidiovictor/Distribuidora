@@ -8,8 +8,8 @@ namespace Domain.Entities
         public int IdRegiao { get; set; }
         public string Nome { get; set; }
         public string Endereco { get; set; }
-        public Regiao Regiao { get; set; }
-        public IEnumerable<Nota> Nota { get; set; }
+        public virtual Regiao Regiao { get; set; }
+        public virtual IEnumerable<Nota> Nota { get; set; }
 
 
         protected override bool EhValido()

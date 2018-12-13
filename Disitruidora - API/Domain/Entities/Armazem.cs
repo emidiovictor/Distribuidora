@@ -7,8 +7,8 @@ namespace Domain.Entities
     {
         public string Nome { get; set; }
         public int IdRegiao { get; set; }
-        public Regiao Regiao { get; set; }
-        public ICollection<ProdutoArmazem> ProdutoArmazem { get; set; }
+        public virtual Regiao Regiao { get; set; }
+        public virtual ICollection<ProdutoArmazem> ProdutoArmazem { get; set; }
 
         protected override bool EhValido()
         {

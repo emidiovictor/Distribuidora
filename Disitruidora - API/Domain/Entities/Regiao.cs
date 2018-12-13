@@ -8,8 +8,8 @@ namespace Domain.Entities
         public string Nome { get; set; }
         public decimal CoordenadaX { get; set; }
         public decimal CoordenadaY { get; set; }
-        public IEnumerable<Armazem> Armazens { get; set; }
-        public IEnumerable<Participante> Participantes { get; set; }
+        public virtual IEnumerable<Armazem> Armazens { get; set; }
+        public virtual IEnumerable<Participante> Participantes { get; set; }
 
         protected override bool EhValido()
         {

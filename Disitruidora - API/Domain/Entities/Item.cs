@@ -7,8 +7,8 @@ namespace Domain.Entities
         public int IdProduto { get; set; }
         public int IdNota { get; set; }
         public int Quantidade { get; set; }
-        public Nota Nota { get; set; }
-        public Produto Produto { get; set; }
+        public virtual Nota Nota { get; set; }
+        public virtual Produto Produto { get; set; }
 
         protected override bool EhValido()
         {

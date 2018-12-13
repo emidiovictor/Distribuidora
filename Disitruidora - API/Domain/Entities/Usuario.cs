@@ -8,7 +8,7 @@ namespace Domain.Entities
         public string Nome { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
-        public IEnumerable<Nota> Notas { get; set; }
+        public virtual IEnumerable<Nota> Notas { get; set; }
 
         private void ValidarUsuario()
         {

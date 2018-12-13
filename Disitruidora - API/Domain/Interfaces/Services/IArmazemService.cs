@@ -5,12 +5,15 @@ namespace Domain.Interfaces.Services
 {
     public interface IArmazemService
     {
-        List<Armazem> BuscarTodos();
+        IEnumerable<Armazem> BuscarTodos();
 
         void CadastrarArmazem(Armazem arm);
 
         Armazem BuscarArmazem(int id);
 
         void DeletarArmzem(int id);
+
+
+        IEnumerable<Armazem> BuscarArmazemComRegioes();
     }
 }

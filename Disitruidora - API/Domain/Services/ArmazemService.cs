@@ -3,9 +3,8 @@ using System.Linq;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using FluentValidation.Results;
 
-namespace InfraData.Services
+namespace Domain.Services
 {
     public class ArmazemService : IArmazemService
     {
@@ -16,7 +15,7 @@ namespace InfraData.Services
             _armazemRepository = armazemRepository;
         }
 
-        public List<Armazem> BuscarTodos()
+        public IEnumerable<Armazem> BuscarTodos()
         {
             return _armazemRepository.All().ToList();
         }
@@ -35,6 +34,11 @@ namespace InfraData.Services
         {
             var arm = BuscarArmazem(id);
             _armazemRepository.Delete(arm);
+        }
+
+        public IEnumerable<Armazem> BuscarArmazemComRegioes()
+        {
+            return _armazemRepository.BuscarArmazemERegioes();
         }
     }
 }

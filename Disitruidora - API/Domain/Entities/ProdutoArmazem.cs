@@ -8,8 +8,8 @@ namespace Domain.Entities
         public int IdArmazem { get; set; }
 
         public int Quantidade { get; set; }
-        public Armazem Armazem { get; set; }
-        public Produto Produto { get; set; }
+        public virtual Armazem Armazem { get; set; }
+        public virtual Produto Produto { get; set; }
 
 
         public void ValidarQuantidade()
