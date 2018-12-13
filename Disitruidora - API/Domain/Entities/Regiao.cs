@@ -11,7 +11,7 @@ namespace Domain.Entities
         public virtual IEnumerable<Armazem> Armazens { get; set; }
         public virtual IEnumerable<Participante> Participantes { get; set; }
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             ValidarCoordenadas();
             ValidationResult = Validate(this);

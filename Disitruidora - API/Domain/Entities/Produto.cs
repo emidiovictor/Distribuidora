@@ -21,7 +21,7 @@ namespace Domain.Entities
             RuleFor(x => x.PrecoVenda).GreaterThan(0).WithMessage(string.Format(template, "preço de venda"));
         }
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             ValidarValores();
             ValidationResult = Validate(this);

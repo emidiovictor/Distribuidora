@@ -7,7 +7,7 @@ namespace Domain.Interfaces.Services
     {
         IEnumerable<Armazem> BuscarTodos();
 
-        void CadastrarArmazem(Armazem arm);
+        Armazem CadastrarArmazem(Armazem arm);
 
         Armazem BuscarArmazem(int id);
 
@@ -15,5 +15,6 @@ namespace Domain.Interfaces.Services
 
 
         IEnumerable<Armazem> BuscarArmazemComRegioes();
+        Armazem Editar(Armazem arm);
     }
 }

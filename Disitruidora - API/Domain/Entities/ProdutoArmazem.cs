@@ -17,7 +17,7 @@ namespace Domain.Entities
             RuleFor(x => x.Quantidade).GreaterThan(0).WithMessage("A quantidade deve ser maior que zero");
         }
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             ValidarQuantidade();
             ValidationResult = Validate(this);

@@ -25,9 +25,11 @@ namespace Domain.Services
             return _armazemRepository.GetById(id);
         }
 
-        public void CadastrarArmazem(Armazem arm)
+        public Armazem CadastrarArmazem(Armazem arm)
         {
+            if (!arm.IsValid()) return null;
             _armazemRepository.Add(arm);
+            return arm;
         }
 
         public void DeletarArmzem(int id)
@@ -39,6 +41,13 @@ namespace Domain.Services
         public IEnumerable<Armazem> BuscarArmazemComRegioes()
         {
             return _armazemRepository.BuscarArmazemERegioes();
+        }
+
+        public Armazem Editar(Armazem arm)
+        {
+            if (!arm.IsValid()) return null;
+            _armazemRepository.Update(arm);
+            return arm;
         }
     }
 }

@@ -21,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using UoW.UoW;
 
 namespace Api
 {
@@ -47,7 +48,6 @@ namespace Api
 
             services.AddDbContext<DataBaseContext>(options =>
                 options
-                    //.UseLazyLoadingProxies()
                     .UseNpgsql(connectionString));
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
@@ -66,6 +66,7 @@ namespace Api
             services.AddScoped<IArmazemAppService, ArmazemAppService>();
             services.AddScoped<IArmazemRepository, ArmazemRepository>();
             services.AddScoped<IArmazemService, ArmazemService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<DataBaseContext>();
             services.AddAutoMapper();
         }
@@ -86,6 +87,8 @@ namespace Api
 
             app.UseSwagger();
             Mapper.Initialize(cfg => cfg.AddProfile<DtoToDomainProfile>());
+            Mapper.Initialize(cfg => cfg.AddProfile<DomainToDtoProfile>());
+
 
 
             app.UseSwaggerUI(c =>

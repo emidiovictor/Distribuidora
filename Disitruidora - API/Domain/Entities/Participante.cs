@@ -12,7 +12,7 @@ namespace Domain.Entities
         public virtual IEnumerable<Nota> Nota { get; set; }
 
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             ValidarParticipante();
             ValidationResult = Validate(this);

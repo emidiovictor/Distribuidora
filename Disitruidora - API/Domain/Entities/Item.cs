@@ -10,7 +10,7 @@ namespace Domain.Entities
         public virtual Nota Nota { get; set; }
         public virtual Produto Produto { get; set; }
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             throw new NotImplementedException();
         }

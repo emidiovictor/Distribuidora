@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Dtos;
 using Application.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +22,18 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-
-           var a = _armazemAppService.BuscarTodosArmazensComRegiao();
-            return Ok(a);
+            var armazensConsultaDtos = _armazemAppService.BuscarTodosArmazensComRegiao();
+            return Ok(armazensConsultaDtos);
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpPost()]
+        public IActionResult Salvar(ArmazemCadastroDto dto)
         {
-            return "value";
+            if (!ModelState.IsValid)
+            {
+
+            }
         }
 
         // POST api/values

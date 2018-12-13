@@ -10,7 +10,7 @@ namespace Domain.Entities
         public virtual Regiao Regiao { get; set; }
         public virtual ICollection<ProdutoArmazem> ProdutoArmazem { get; set; }
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             throw new NotImplementedException();
         }

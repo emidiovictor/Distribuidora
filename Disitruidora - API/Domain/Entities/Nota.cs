@@ -27,7 +27,7 @@ namespace Domain.Entities
         }
 
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             ValidarTipNota();
             ValidationResult = Validate(this);

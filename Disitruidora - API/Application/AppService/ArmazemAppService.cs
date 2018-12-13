@@ -5,6 +5,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces.Services;
+using UoW.UoW;
 
 namespace Application.AppService
 {
@@ -12,11 +13,11 @@ namespace Application.AppService
     {
         private readonly IArmazemService _armazemService;
 
-        public ArmazemAppService(IMapper mapper, IArmazemService armazemService) : base(mapper)
+        public ArmazemAppService(IMapper mapper, IUnitOfWork uoW, IArmazemService armazemService) : base(mapper, uoW)
         {
             _armazemService = armazemService;
         }
-        
+
         public IEnumerable<Armazem> BuscarTodosArmazens()
         {
             return _armazemService.BuscarTodos();
@@ -24,27 +25,30 @@ namespace Application.AppService
 
         public IEnumerable<ArmazemConsultaDto> BuscarTodosArmazensComRegiao()
         {
-            var listArmazem= _armazemService.BuscarArmazemComRegioes();
-
-            var armazemDtoList = mapper.Map<IEnumerable<ArmazemConsultaDto>>(listArmazem);
+            var listArmazem = _armazemService.BuscarArmazemComRegioes();
+            var armazemDtoList = Mapper.Map<IEnumerable<ArmazemConsultaDto>>(listArmazem);
             return armazemDtoList;
         }
 
-        public void SalvarArmazem(Armazem armazem)
+        public void SalvarArmazem(ArmazemCadastroDto armazem)
         {
-            throw new System.NotImplementedException();
+            var arm = Mapper.Map<Armazem>(armazem);
+            _armazemService.CadastrarArmazem(arm);
+            Commit();
         }
 
-        public void DeletarArmazem(Armazem arm)
+        public void DeletarArmazem(int id)
         {
-            throw new System.NotImplementedException();
+            _armazemService.DeletarArmzem(id);
         }
 
-        public void EditarArmazem(Armazem arm)
+        public void EditarArmazem(ArmazemCadastroDto arm)
         {
-            throw new System.NotImplementedException();
+            var armazem = Mapper.Map<Armazem>(arm);
+            _armazemService.Editar(armazem);
+            Commit();
         }
 
-       
+
     }
 }

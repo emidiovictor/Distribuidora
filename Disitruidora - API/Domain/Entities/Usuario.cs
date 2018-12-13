@@ -17,7 +17,7 @@ namespace Domain.Entities
             RuleFor(x => x.Login).MaximumLength(10).WithMessage("O login deve ter menos que 10 letras");
         }
 
-        protected override bool EhValido()
+        public override bool IsValid()
         {
             ValidarUsuario();
             ValidationResult = Validate(this);

@@ -25,11 +25,10 @@ namespace InfraData.Repositories
             return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
         }
 
-        public T Add(T entity)
+        public void  Add(T entity)
         {
             _dbContext.Set<T>().Add(entity);
 
-            return entity;
         }
 
         public void Delete(T entity)

@@ -16,5 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\InfraData\InfraData.csproj" />
+    <ProjectReference Include="..\UoW\UoW.csproj" />
   </ItemGroup>
 </Project>

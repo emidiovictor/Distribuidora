@@ -19,7 +19,7 @@ namespace Domain.Entities
         [NotMapped]
         public ValidationResult ValidationResult { get; set; }
 
-        protected virtual bool EhValido()
+        public virtual bool IsValid()
         {
             return ValidationResult.IsValid;
         }
