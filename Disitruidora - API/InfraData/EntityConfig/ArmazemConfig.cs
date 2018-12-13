@@ -11,7 +11,7 @@ namespace InfraData.EntityConfig
         public void Configure(EntityTypeBuilder<Armazem> builder)
         {
 
-            builder.ToTable("armazem");
+            builder.ToTable("armazens");
 
             builder.HasKey(x => x.Id);
 

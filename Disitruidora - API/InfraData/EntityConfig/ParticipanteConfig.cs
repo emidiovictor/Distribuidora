@@ -8,7 +8,7 @@ namespace InfraData.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Participante> builder)
         {
-            builder.ToTable("particiapntes");
+            builder.ToTable("participantes");
 
             builder.HasKey(x => x.Id);
 
@@ -16,15 +16,21 @@ namespace InfraData.EntityConfig
             builder.Property(x => x.Id).HasColumnName("id");
             builder.Property(x => x.Nome).HasColumnName("nome").HasMaxLength(200).HasColumnType("varchar").IsRequired();
 
-            builder.Property(x => x.Endereco).HasColumnName("endereco").HasColumnType("varchar").HasMaxLength(200).IsRequired();
+            builder.Property(x => x.IdEndereco).HasColumnName("id_endereco").IsRequired();
             builder.Property(x => x.IdRegiao).HasColumnName("id_regiao");
 
-            builder.Ignore(x => x.CascadeMode);
             builder.HasOne(x => x.Regiao)
                 .WithMany(x => x.Participantes)
                 .HasForeignKey(x => x.IdRegiao);
-            
-            
+
+            builder.HasOne(x => x.Endereco)
+                .WithMany(x => x.Participante)
+                .HasForeignKey(x => x.IdEndereco);
+
+
+            builder.Ignore(x => x.CascadeMode);
+
+
             builder.Ignore(x => x.CascadeMode);
         }
         

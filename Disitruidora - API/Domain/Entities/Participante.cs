@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Domain.Entities;
 using FluentValidation;
 
 namespace Domain.Entities
@@ -7,7 +8,8 @@ namespace Domain.Entities
     {
         public int IdRegiao { get; set; }
         public string Nome { get; set; }
-        public string Endereco { get; set; }
+        public int IdEndereco{ get; set; }
+        public virtual Endereco Endereco{ get; set; }
         public virtual Regiao Regiao { get; set; }
         public virtual IEnumerable<Nota> Nota { get; set; }
 
@@ -23,8 +25,7 @@ namespace Domain.Entities
 
         private void ValidarParticipante()
         {
-            var template = "O campo {0} está vazio";
-            RuleFor(x => x.Endereco).NotEmpty().WithMessage(string.Format(template, "endereco"));
+            const string template = "O campo {0} está vazio";
             RuleFor(x => x.Nome).NotEmpty().WithMessage(string.Format(template, "nome"));
         }
     }

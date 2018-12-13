@@ -19,6 +19,7 @@ namespace InfraData.DataContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ArmazemConfig());
+            modelBuilder.ApplyConfiguration(new EnderecoConfig());
             modelBuilder.ApplyConfiguration(new ParticipanteConfig());
             modelBuilder.ApplyConfiguration(new ProdutoConfig());
             modelBuilder.ApplyConfiguration(new ProdutoArmazemConfig());

@@ -10,7 +10,7 @@ namespace InfraData.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.ToTable("item");
+            builder.ToTable("item_nota");
 
             builder.Property(x => x.IdNota).HasColumnName("id_nota");
 
