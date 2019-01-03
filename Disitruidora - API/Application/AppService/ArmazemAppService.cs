@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Application.AppService.Base;
 using Application.Dtos;
 using Application.Interfaces;
@@ -18,9 +19,9 @@ namespace Application.AppService
             _armazemService = armazemService;
         }
 
-        public IEnumerable<Armazem> BuscarTodosArmazens()
+        public async Task<IEnumerable<Armazem>> BuscarTodosArmazens()
         {
-            return _armazemService.BuscarTodos();
+            return await _armazemService.BuscarTodos();
         }
 
         public IEnumerable<ArmazemConsultaDto> BuscarTodosArmazensComRegiao()

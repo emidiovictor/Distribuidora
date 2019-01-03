@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Domain.Entities;
 
 namespace Domain.Interfaces.Repositories
 {
     public interface IArmazemRepository : IBaseRepository<Armazem>
     {
-        IEnumerable<Armazem> BuscarArmazemERegioes();
+        Task<List<Armazem>> BuscarArmazemERegioes();
     }
 }

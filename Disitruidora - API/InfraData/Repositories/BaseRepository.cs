@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using InfraData.DataContext;
@@ -20,14 +21,14 @@ namespace InfraData.Repositories
             entry = dbContext.Set<T>();
         }
 
-        public virtual T GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
-            return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
+            return await _dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
         }
 
-        public void  Add(T entity)
+        public async Task Add(T entity)
         {
-            _dbContext.Set<T>().Add(entity);
+            await _dbContext.Set<T>().AddAsync(entity);
 
         }
 
@@ -41,14 +42,14 @@ namespace InfraData.Repositories
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
         {
-            return _dbContext.Set<T>().Where(predicate).ToList();
+            return await _dbContext.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public IEnumerable<T> All()
+        public async Task<IEnumerable<T>> All()
         {
-            return _dbContext.Set<T>().ToList();
+            return await _dbContext.Set<T>().ToListAsync();
         }
     }
 }

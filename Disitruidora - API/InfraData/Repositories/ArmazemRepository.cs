@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using InfraData.DataContext;
@@ -14,9 +15,9 @@ namespace InfraData.Repositories
         }
 
 
-        public IEnumerable<Armazem> BuscarArmazemERegioes()
+        public Task<List<Armazem>> BuscarArmazemERegioes()
         {
-            return entry.Include(x => x.Regiao).ToList();
+            return entry.Include(x => x.Regiao).ToListAsync();
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
@@ -15,14 +16,14 @@ namespace Domain.Services
             _armazemRepository = armazemRepository;
         }
 
-        public IEnumerable<Armazem> BuscarTodos()
+        public async Task<IEnumerable<Armazem>> BuscarTodos()
         {
-            return _armazemRepository.All().ToList();
+            return await _armazemRepository.All();
         }
 
-        public Armazem BuscarArmazem(int id)
+        public async Task<Armazem> BuscarArmazem(int id)
         {
-            return _armazemRepository.GetById(id);
+            return await _armazemRepository.GetById(id);
         }
 
         public Armazem CadastrarArmazem(Armazem arm)
@@ -32,15 +33,15 @@ namespace Domain.Services
             return arm;
         }
 
-        public void DeletarArmzem(int id)
+        public async Task DeletarArmzem(int id)
         {
-            var arm = BuscarArmazem(id);
-            _armazemRepository.Delete(arm);
+            var arm = await BuscarArmazem(id);
+           _armazemRepository.Delete(arm);
         }
 
-        public IEnumerable<Armazem> BuscarArmazemComRegioes()
+        public async Task<IEnumerable<Armazem>> BuscarArmazemComRegioes()
         {
-            return _armazemRepository.BuscarArmazemERegioes();
+            return await _armazemRepository.BuscarArmazemERegioes();
         }
 
         public Armazem Editar(Armazem arm)
