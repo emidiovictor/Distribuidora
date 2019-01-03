@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentValidation;
 
 namespace Domain.Entities
 {
@@ -12,7 +13,16 @@ namespace Domain.Entities
 
         public override bool IsValid()
         {
-            throw new NotImplementedException();
+            NomeValido();
+            ValidationResult = Validate(this);
+            return ValidationResult.IsValid;
+
+        }
+
+
+        public void NomeValido()
+        {
+            RuleFor(x => x.Nome).NotEmpty();
         }
     }
 }
