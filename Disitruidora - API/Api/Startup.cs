@@ -11,6 +11,7 @@ using Domain.Interfaces.Services;
 using Domain.Services;
 using InfraData.DataContext;
 using InfraData.Repositories;
+using IoC.Injection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -47,7 +48,13 @@ namespace Api
                 options
                     .UseNpgsql(connectionString));
 
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
+
+            services.AddSwaggerGen
+                (c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Armazens", Version = "Alpha" }); 
+
+            });
 
 
             services.AddCors(options =>
@@ -60,11 +67,7 @@ namespace Api
             });
 
 
-            services.AddScoped<IArmazemAppService, ArmazemAppService>();
-            services.AddScoped<IArmazemRepository, ArmazemRepository>();
-            services.AddScoped<IArmazemService, ArmazemService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<DataBaseContext>();
+            services.AddDI();
             services.AddAutoMapper();
         }
 
@@ -83,6 +86,8 @@ namespace Api
             app.UseCors("AllowAll");
 
             app.UseSwagger();
+
+
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<DtoToDomainProfile>();

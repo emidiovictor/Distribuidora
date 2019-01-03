@@ -19,7 +19,6 @@ namespace Domain.Entities
 
         }
 
-
         public void NomeValido()
         {
             RuleFor(x => x.Nome).NotEmpty();
