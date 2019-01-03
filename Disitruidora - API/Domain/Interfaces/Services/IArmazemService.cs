@@ -8,7 +8,7 @@ namespace Domain.Interfaces.Services
     {
         Task<IEnumerable<Armazem>> BuscarTodos();
 
-        Armazem CadastrarArmazem(Armazem arm);
+        Task<Armazem> CadastrarArmazem(Armazem arm);
 
         Task<Armazem> BuscarArmazem(int id);
 

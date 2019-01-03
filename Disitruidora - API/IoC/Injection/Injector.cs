@@ -5,6 +5,8 @@ using Application.AppService;
 using Application.Interfaces;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.Interfaces.Services.Base;
+using Domain.Notifications;
 using Domain.Services;
 using InfraData.DataContext;
 using InfraData.Repositories;
@@ -23,6 +25,11 @@ namespace IoC.Injection
             services.AddScoped<IArmazemService, ArmazemService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<DataBaseContext>();
+
+
+
+            services.AddScoped<INotificationHandler, NotificationHandler>();
+
 
         }
     }

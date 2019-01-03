@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FluentValidation;
 
 namespace Domain.Entities
@@ -16,12 +15,12 @@ namespace Domain.Entities
             NomeValido();
             ValidationResult = Validate(this);
             return ValidationResult.IsValid;
-
         }
 
         public void NomeValido()
         {
             RuleFor(x => x.Nome).NotEmpty();
+            RuleFor(x => x.Regiao).NotEmpty();
         }
     }
 }

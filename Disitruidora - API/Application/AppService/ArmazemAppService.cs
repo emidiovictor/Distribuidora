@@ -24,17 +24,17 @@ namespace Application.AppService
             return await _armazemService.BuscarTodos();
         }
 
-        public IEnumerable<ArmazemConsultaDto> BuscarTodosArmazensComRegiao()
+        public async Task<IEnumerable<ArmazemConsultaDto>> BuscarTodosArmazensComRegiao()
         {
-            var listArmazem = _armazemService.BuscarArmazemComRegioes();
+            var listArmazem = await _armazemService.BuscarArmazemComRegioes();
             var armazemDtoList = Mapper.Map<IEnumerable<ArmazemConsultaDto>>(listArmazem);
             return armazemDtoList;
         }
 
-        public Armazem SalvarArmazem(ArmazemCadastroDto armazem)
+        public async Task<Armazem> SalvarArmazem(ArmazemCadastroDto armazem)
         {
             var arm = Mapper.Map<Armazem>(armazem);
-            _armazemService.CadastrarArmazem(arm);
+            await _armazemService.CadastrarArmazem(arm);
             Commit();
             return arm;
         }

@@ -1,17 +1,17 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.Interfaces.Services.Base;
 
 namespace Domain.Services
 {
-    public class ArmazemService : IArmazemService
+    public class ArmazemService : BaseService, IArmazemService
     {
         private readonly IArmazemRepository _armazemRepository;
 
-        public ArmazemService(IArmazemRepository armazemRepository)
+        public ArmazemService(INotificationHandler notificationHandler, IArmazemRepository armazemRepository) : base(notificationHandler)
         {
             _armazemRepository = armazemRepository;
         }
@@ -26,17 +26,21 @@ namespace Domain.Services
             return await _armazemRepository.GetById(id);
         }
 
-        public Armazem CadastrarArmazem(Armazem arm)
+        public async Task<Armazem> CadastrarArmazem(Armazem arm)
         {
-            if (!arm.IsValid()) return null;
-            _armazemRepository.Add(arm);
+            if (!arm.IsValid())
+            {
+                NotificarValidacoesErro(arm.ValidationResult);
+                return arm;
+            }
+            await _armazemRepository.Add(arm);
             return arm;
         }
 
         public async Task DeletarArmzem(int id)
         {
             var arm = await BuscarArmazem(id);
-           _armazemRepository.Delete(arm);
+            _armazemRepository.Delete(arm);
         }
 
         public async Task<IEnumerable<Armazem>> BuscarArmazemComRegioes()
@@ -51,4 +55,6 @@ namespace Domain.Services
             return arm;
         }
     }
+
+
 }

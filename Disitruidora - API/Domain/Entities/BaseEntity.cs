@@ -1,7 +1,4 @@
-﻿
-
-
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -16,8 +13,7 @@ namespace Domain.Entities
 
         public int Id { get; set; }
 
-        [NotMapped]
-        public ValidationResult ValidationResult { get; set; }
+        [NotMapped] public ValidationResult ValidationResult { get; set; }
 
         public virtual bool IsValid()
         {

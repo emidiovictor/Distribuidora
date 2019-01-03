@@ -9,9 +9,9 @@ namespace Application.Interfaces
     {
 
         Task<IEnumerable<Armazem>> BuscarTodosArmazens();
-        IEnumerable<ArmazemConsultaDto> BuscarTodosArmazensComRegiao();
+        Task<IEnumerable<ArmazemConsultaDto>> BuscarTodosArmazensComRegiao();
 
-        Armazem SalvarArmazem(ArmazemCadastroDto armazem);
+        Task<Armazem> SalvarArmazem(ArmazemCadastroDto armazem);
 
         void DeletarArmazem(int id);
 
